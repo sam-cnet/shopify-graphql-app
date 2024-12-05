@@ -1,7 +1,14 @@
 import { createGraphQLClient } from '@shopify/graphql-client';
+import 'dotenv/config';
+
+const {
+    SHOPIFY_ACCESS_TOKEN,
+    SHOPIFY_STORE_URL
+} = process.env;
+
 
 //product name to query
-let productName = '';
+let productName;
 let consoleRows = [];
 let errors = false;
 
@@ -56,10 +63,10 @@ if (!errors) {
 
     //execute graphql fetch 
     const client = createGraphQLClient({
-        url: 'https://achievecustom.myshopify.com/admin/api/2024-10/graphql.json',
+        url: SHOPIFY_STORE_URL,
         headers: {
             'Content-Type': 'application/json',
-            'X-Shopify-Access-Token': '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',
+            'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
         },
         retries: 1
     });
@@ -68,10 +75,10 @@ if (!errors) {
         variables: {
             query: productName
         },
-    });
+    }); 
 
     if (errors) {
-        console.log(errors)
+        console.log("ERRORS", errors)
     }
     else {
 
@@ -109,7 +116,7 @@ if (!errors) {
             sortedByPrice.forEach(row => {
                 console.log(row.productTitle + " " + row.variantTitle + " " + row.variantPrice)
             })
-        }
+        } 
         else {
             console.log("No products Found!")
         }
