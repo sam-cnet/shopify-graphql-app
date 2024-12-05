@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Shopify app to fetch product names via GraphQL",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Achieve Applabs",
+  "license": "ISC",
+  "dependencies": {
+    "@shopify/graphql-client": "^1.2.1",
+    "command-line-args": "^6.0.1"
+  }
+}
